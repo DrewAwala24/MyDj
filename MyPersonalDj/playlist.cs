@@ -9,6 +9,12 @@ namespace MyPersonalDj
         private string songTitle;
         private string filepath;
 
+        public playlist(string v, string file)
+        {
+            songTitle = v;
+            filepath = file;
+        }
+
         public void Songs(string songTitle, string filepath)
         {
             this.songTitle = songTitle;
@@ -22,6 +28,5 @@ namespace MyPersonalDj
         {
             return filepath;
         }
-
     }
 }
