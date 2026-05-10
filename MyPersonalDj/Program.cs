@@ -35,7 +35,9 @@ namespace MyPersonalDj
                 if(selectedSong != null)
                 {
                     myDj.PlayMusic(selectedSong.getFilePath());
+                    Console.WriteLine("||============================================|| ");
                     Console.WriteLine($"Now Playing: {selectedSong.getSongTitle()}");
+                    Console.WriteLine("||============================================|| ");
                 }
                 
             }
