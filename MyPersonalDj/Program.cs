@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Channels;
 
 namespace MyPersonalDj
 {
@@ -14,46 +15,53 @@ namespace MyPersonalDj
             myMenu.LoadSongs(folderpath);
 
             bool isRunning = true;
-            
-            while(isRunning)
+            playback remote = new playback();
+            myMenu.displayLibrary();
+
+            while (isRunning)
             {
-              
-                myMenu.displayLibrary();
+                Console.WriteLine("[N] New Song, [P] Pause/Resume, [E] Exit, [S] Shuffle");
+                var key = Console.ReadKey(true).Key;
 
-                Console.WriteLine("Enter the song number to play: ");
-                string input = Console.ReadLine();
-                int choice = Convert.ToInt32(input);
-
-                if(choice == -1)
+                switch (key)
                 {
-                    isRunning = false;
-                    continue;
+                    case ConsoleKey.N:
+                        Console.WriteLine("Enter Song Number: ");
+                        int choice = Convert.ToInt32(Console.ReadLine());
+                        playlist selected = myMenu.GetPlaylist(choice);
+                        if (selected != null) remote.start(selected.getFilePath());
+                        break;
+
+                    case ConsoleKey.P:
+                        remote.pause();
+                        break;
+
+                    case ConsoleKey.S:
+                        int total = myMenu.GetSongCount();
+                        int randomIndex = remote.GetShuffleIndex(total);
+                        playlist randomSongs = myMenu.GetPlaylist(randomIndex);
+
+                        if (randomSongs != null)
+                        {
+                            remote.start(randomSongs.getFilePath());
+                            Console.WriteLine($"\n>>> Shuffled to: {randomSongs.getSongTitle()}");
+                        }
+                        break;
+
+                    case ConsoleKey.E:
+                        Console.WriteLine("Closing App.........");
+                        remote.Stop();
+                        isRunning = false;
+                        break;
+
+                    default:
+                        Console.WriteLine("Unkown Command! ");
+                        Console.WriteLine("Use N, P, S, E");
+                        break;
                 }
 
-                playlist selectedSong = myMenu.GetPlaylist(choice);
 
-                if(selectedSong != null)
-                {
-                    myDj.PlayMusic(selectedSong.getFilePath());
-                    Console.WriteLine("||============================================|| ");
-                    Console.WriteLine($"Now Playing: {selectedSong.getSongTitle()}");
-                    Console.WriteLine("||============================================|| ");
-                }
-                
             }
-
-            Console.WriteLine("Press the SPACEBAR to stop the music");
-            while (Console.ReadKey(true).Key != ConsoleKey.Spacebar) {}
-
-            try
-            {
-                myDj.StopMusic();                
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("Invalid Key!");
-            }
-            Console.ReadKey();
           
         }
     }

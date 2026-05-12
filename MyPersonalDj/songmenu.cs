@@ -35,6 +35,11 @@ namespace MyPersonalDj
             }
             return null;
         }
+
+        internal int GetSongCount()
+        {
+            return myRecord.Count();
+        }
     }
     
 }
