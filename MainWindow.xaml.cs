@@ -23,8 +23,22 @@ namespace MyPersonalDjGui
             InitializeComponent();
 
             SongListBox.ItemsSource = (System.Collections.IEnumerable)myMenu.getLibrary();
-        }
 
+            LoadSongs();
+        }
+        private void LoadSongs()
+        {
+            var songs = myMenu.getLibrary();
+            SongListBox.ItemsSource = songs;
+        }
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(SongListBox.SelectedItem != null)
+            {
+                string selected = SongListBox.SelectedItem.ToString();
+                myMenu.playSong(selected);
+            }
+        }
     }
 
 }

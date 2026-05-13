@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace MyPersonalDj
+namespace MyPersonalDjGui
 {
     internal class songmenu
     {
@@ -48,6 +48,11 @@ namespace MyPersonalDj
                 songs.Add(p.getSongTitle());
             }
             return songs;
+        }
+
+        internal void playSong(string? selected)
+        {
+            throw new NotImplementedException();
         }
     }
 
