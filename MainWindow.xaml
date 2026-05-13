@@ -1,0 +1,19 @@
+﻿<Window x:Class="MyPersonalDjGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyPersonalDjGui"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Background="#2D2D30">
+        
+        <ListBox x:Name="SongListBox" 
+             Margin="20" 
+             Background="#3E3E42" 
+             Foreground="White" 
+             FontSize="14" 
+             BorderThickness="0"/>
+        
+    </Grid>
+</Window>
