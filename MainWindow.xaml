@@ -7,13 +7,46 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="#2D2D30">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="160" />
+        </Grid.RowDefinitions>
+
         <ListBox x:Name="SongListBox" 
-             Margin="20" 
+             Margin="20"
              Background="#3E3E42" 
              Foreground="White" 
              FontSize="14" 
-             BorderThickness="0"/>
-        
+             BorderThickness="0"
+             Grid.Row="0" />
+
+        <TextBlock x:Name="DebugBanner"
+                   Grid.Row="0"
+                   Margin="24,12,0,0"
+                   Foreground="Yellow"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Panel.ZIndex="1" />
+
+        <TextBlock x:Name="StatusText"
+                   Grid.Row="1"
+                   Margin="20,0,20,6"
+                   Foreground="White"
+                   FontSize="12"/>
+
+        <TextBox x:Name="ConsoleLogText"
+                 Grid.Row="2"
+                 Margin="20,0,20,20"
+                 Background="#1E1E1E"
+                 Foreground="LightGreen"
+                 FontFamily="Consolas"
+                 FontSize="12"
+                 IsReadOnly="True"
+                 TextWrapping="NoWrap"
+                 VerticalScrollBarVisibility="Auto"
+                 HorizontalScrollBarVisibility="Auto"/>
     </Grid>
 </Window>
