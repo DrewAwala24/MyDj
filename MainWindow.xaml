@@ -8,9 +8,9 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="#2D2D30">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="160" />
         </Grid.RowDefinitions>
 
         <ListBox x:Name="SongListBox" 
@@ -19,34 +19,28 @@
              Foreground="White" 
              FontSize="14" 
              BorderThickness="0"
-             Grid.Row="0" />
+             Grid.Row="1" MouseDoubleClick="SongListBox_MouseDoubleClick" />
 
-        <TextBlock x:Name="DebugBanner"
-                   Grid.Row="0"
-                   Margin="24,12,0,0"
-                   Foreground="Yellow"
-                   FontSize="16"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Panel.ZIndex="1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="12" HorizontalAlignment="Left">
+            <Button x:Name="PlayButton" Width="80" Margin="4" Click="PlayButton_Click">Play</Button>
+            <Button x:Name="PauseButton" Width="80" Margin="4" Click="PauseButton_Click">Pause</Button>
+            <Button x:Name="StopButton" Width="80" Margin="4" Click="StopButton_Click">Stop</Button>
+            <Button x:Name="ShuffleButton" Width="80" Margin="4" Click="ShuffleButton_Click">Shuffle</Button>
+            <TextBlock x:Name="DebugBanner"
+                       Margin="12,0,0,0"
+                       Foreground="Yellow"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Panel.ZIndex="1" />
+        </StackPanel>
 
         <TextBlock x:Name="StatusText"
-                   Grid.Row="1"
+                   Grid.Row="2"
                    Margin="20,0,20,6"
                    Foreground="White"
                    FontSize="12"/>
 
-        <TextBox x:Name="ConsoleLogText"
-                 Grid.Row="2"
-                 Margin="20,0,20,20"
-                 Background="#1E1E1E"
-                 Foreground="LightGreen"
-                 FontFamily="Consolas"
-                 FontSize="12"
-                 IsReadOnly="True"
-                 TextWrapping="NoWrap"
-                 VerticalScrollBarVisibility="Auto"
-                 HorizontalScrollBarVisibility="Auto"/>
+        
     </Grid>
 </Window>

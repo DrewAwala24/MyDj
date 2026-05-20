@@ -54,6 +54,8 @@ namespace MyPersonalDjGui
         {
             throw new NotImplementedException();
         }
+
+  
+        }
     }
 
-}

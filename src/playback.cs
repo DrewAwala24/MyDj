@@ -5,18 +5,31 @@ using System.Text;
 
 namespace MyPersonalDj
 {
-    internal class playback
+    public class playback
     {
         private WaveOutEvent outputDevice;
         private AudioFileReader audioFile;
 
         public void start(String filepath)
         {
-            Stop();
-            audioFile = new AudioFileReader(filepath);
-            outputDevice = new WaveOutEvent();
-            outputDevice.Init(audioFile);
-            outputDevice.Play();
+            try
+            {
+                Stop();
+                audioFile = new AudioFileReader(filepath);
+                outputDevice = new WaveOutEvent();
+                outputDevice.Init(audioFile);
+                outputDevice.Play();
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    var log = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MyPersonalDj_console.log");
+                    System.IO.File.AppendAllText(log, $"Playback error: {ex}\n");
+                }
+                catch { }
+                throw;
+            }
         }
 
         public void pause()
